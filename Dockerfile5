@@ -1,0 +1,23 @@
+FROM registry.ott-consult.de/oc/java9
+MAINTAINER Joern Ott <joern.ott@ott-consult.de>
+
+ENV ELASTICSEARCH_VERSION=5.6.4 \
+    APP_USER=elasticsearch \
+    APP_UID=2101 \
+    APP_GROUP=elk \
+    APP_GID=2100 \
+    APP_HOME=/var/lib/elasticsearch \
+    CONF_DIR=/etc/elasticsearch \
+    DATA_DIR=/var/lib/elasticsearch \
+    LOG_DIR=/var/log/elasticsearch \
+    PID_DIR=/var/run/elasticsearch \
+    ES_HOME=/usr/share/elasticsearch
+
+COPY src /
+
+RUN /tmp/install/oc-elasticsearch.sh
+
+EXPOSE 9200
+EXPOSE 9300
+
+ENTRYPOINT /entrypoint
