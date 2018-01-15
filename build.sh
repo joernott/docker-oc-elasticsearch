@@ -8,7 +8,7 @@ patch_dockerfile Dockerfile5
 docker build -f Dockerfile5 -t registry.ott-consult.de/oc/elasticsearch:5 .
 docker push registry.ott-consult.de/oc/elasticsearch:5
 
-patch_dockerfile6
+patch_dockerfile Dockerfile6
 docker build -f Dockerfile6 -t registry.ott-consult.de/oc/elasticsearch:6 .
 docker push registry.ott-consult.de/oc/elasticsearch:6
 docker tag registry.ott-consult.de/oc/elasticsearch:6 registry.ott-consult.de/oc/elasticsearch:latest
