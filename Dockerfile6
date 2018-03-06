@@ -1,7 +1,7 @@
 FROM registry.ott-consult.de/oc/java9
 LABEL MAINTAINER="joern.ott@ott-consult.de"
 
-ENV ELASTICSEARCH_VERSION=6.0.0 \
+ENV ELASTICSEARCH_VERSION=6.2.2 \
     APP_USER=elasticsearch \
     APP_UID=2101 \
     APP_GROUP=elk \
