@@ -1,10 +1,9 @@
 #!/bin/bash
-chown -R ${APP_USER}:${APP_GROUP} ${APP_HOME}
+IP=$(ip a show eth0 |grep "inet "|sed -e 's|.*inet ||' -e 's|/.*||')
+sed -e "s|#network.host: .*|network.host: [ \"127.0.0.1\", \"${IP}\" ]|" -i /etc/elasticsearch/elasticsearch.yml
+chown -R ${APP_USER}:${APP_GROUP} ${APP_HOME} /etc/elasticsearch /etc/sysconfig/elasticsearch /var/log/elasticsearch /var/lib/elasticsearch
 cd ${APP_HOME}
 gosu ${APP_USER}:${APP_GROUP} /usr/share/elasticsearch/bin/elasticsearch \
     -p ${PID_DIR}/elasticsearch.pid \
-    -Edefault.path.logs=${LOG_DIR} \
-    -Edefault.path.conf=${CONF_DIR} \
-    -Edefault.path.data=${DATA_DIR} \
     $@ 
 
